@@ -1,76 +1,201 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>抽签小助手</title>
-		<style>
-			body {
-				background-image: url("./img/hfbz.jpg");
-				background-repeat: no-repeat;
-				background-size: 100% 100%;
-				background-attachment: fixed;
-			}
+<head>
+  <meta charset="utf-8">
+  <title>抽签小助手</title>
+  <link rel="shortcut icon" href="./img/WebLogo.ico">
+  <style>
+    body {
+      background-image: url("./img/hfbz.jpg");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-attachment: fixed;
+    }
 
-			.container {
-				text-align: center;
-				margin-top: 200px;
-			}
+    .container {
+      text-align: center;
+      margin-top: 200px;
+    }
 
-			h3 {
-				font-size: 24px;
-				color: white;
-			}
+    h3 {
+      font-size: 24px;
+      color: white;
+    }
 
-			h1 {
-				font-size: 48px;
-				color: white;
-				margin-top: 20px;
-			}
+    h1 {
+      font-size: 48px;
+      color: white;
+      margin-top: 20px;
+    }
 
-			#BTN {
-				font-size: 18px;
-				padding: 10px 20px;
-				border-radius: 5px;
-				border: none;
-				background-color: #3d9970;
-				color: white;
-				cursor: pointer;
-				margin-top: 30px;
-			}
+    #BTN {
+      font-size: 18px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #3d9970;
+      color: white;
+      cursor: pointer;
+      margin-top: 30px;
+    }
 
-			#footer {
-				position: fixed;
-				bottom: 0;
-				left: 0;
-				width: 100%;
-				background-color: rgba(0, 0, 0, 0.5);
-				padding: 10px;
-				color: white;
-				font-size: 14px;
-				text-align: center;
-			}
-		</style>
-		<script type="text/javascript" src="./js/main.js"></script>
-		<script type="text/javascript" src="./js/btn.js"></script>
-		<script type="text/javascript" src="./js/siteTime.js"></script>
-		<link rel="shortcut icon" href="./img/WebLogo.ico">
-	</head>
+    #result {
+      color: #000; /* 修改为您想要的文字颜色 */
+      margin-top: 30px;
+      font-size: 20px;
+      line-height: 1.5;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-	<body>
-		<div class="container">
-			<h3>本次抽到的是</h3>
-			<h1 id="result">^_^</h1>
-			<input type="button" value="按A开始" id="BTN" onclick="btnOnclick();" p="l" />
-			<script>
-				document.addEventListener('keydown', function(event) {
-					if (event.keyCode == 65) {
-						document.getElementById('BTN').click();
-					}
-				});
-			</script>
-		</div>
-		<div id="footer">
-			<p>© 2023 whhhhh | <script type="text/javascript" src="./js/siteVisitor.js"></script></p>
-		</div>
-	</body>
+    .result-item {
+      padding: 5px;
+      margin: 5px;
+      border: 1px solid #000;
+      border-radius: 5px;
+    }
+
+    #footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      color: white;
+      font-size: 14px;
+      text-align: center;
+    }
+  </style>
+  <script>
+    function drawLottery() {
+      var numOfStudents = parseInt(document.getElementById("numOfStudents").value);
+      var students = [
+      { name: "艾瑞", weight: 10 },
+	{ name: "张婷", weight: 10 },
+	{ name: "陈璨", weight: 10 },
+	{ name: "包怡宁", weight: 10 },
+	{ name: "毕城悦", weight: 10 },
+	{ name: "曹丽人", weight: 10 },
+	{ name: "曹馨月", weight: 10 },
+	{ name: "曾伊冉", weight: 10 },
+	{ name: "陈家祺", weight: 10 },
+	{ name: "陈思语", weight: 10 },
+	{ name: "陈依涵", weight: 10 },
+	{ name: "程梦媛", weight: 10 },
+	{ name: "程欣怡", weight: 10 },
+	{ name: "程艳", weight: 10 },
+	{ name: "范心茹", weight: 10 },
+	{ name: "高子涵", weight: 10 },
+	{ name: "宫淼", weight: 10 },
+	{ name: "胡凤琳", weight: 10 },
+	{ name: "华文轩", weight: 10 },
+	{ name: "孔淑娴", weight: 10 },
+	{ name: "雷亿茜", weight: 10 },
+	{ name: "李昊宸", weight: 10 },
+	{ name: "李欣洁", weight: 10 },
+	{ name: "李运冉", weight: 10 },
+	{ name: "刘熙雨", weight: 10 },
+	{ name: "娄梦颖", weight: 10 },
+	{ name: "倪美沁", weight: 10 },
+	{ name: "钱海昕", weight: 10 },
+	{ name: "阮淑影", weight: 10 },
+	{ name: "孙溶", weight: 10 },
+	{ name: "孙心怡", weight: 10 },
+	{ name: "唐星", weight: 10 },
+	{ name: "田琪琪", weight: 10 },
+	{ name: "汪浩平", weight: 10 },
+	{ name: "王馨语", weight: 10 },
+	{ name: "王业琦", weight: 10 },
+	{ name: "王漪如", weight: 10 },
+	{ name: "王义龙", weight: 10 },
+	{ name: "王紫琦", weight: 10 },
+	{ name: "韦皖莹", weight: 10 },
+	{ name: "吴涵", weight: 10 },
+	{ name: "吴宁静", weight: 10 },
+	{ name: "吴琼", weight: 10 },
+	{ name: "吴奕璇", weight: 10 },
+	{ name: "徐嫣妍", weight: 10 },
+	{ name: "严欣怡", weight: 10 },
+	{ name: "姚昕悦", weight: 10 },
+	{ name: "袁昌庆", weight: 10 },
+	{ name: "张诗涵", weight: 10 },
+	{ name: "赵徐慧", weight: 10 },
+	{ name: "左豪", weight: 10 }
+      ];
+
+      var selected = [];
+
+      function getRandomStudent() {
+        var availableStudents = students.filter(function (student) {
+          return !selected.includes(student.name);
+        });
+
+        var totalWeight = availableStudents.reduce(function (sum, student) {
+          return sum + student.weight;
+        }, 0);
+
+        var randomNum = Math.random() * totalWeight;
+        var cumulativeWeight = 0;
+
+        for (var i = 0; i < availableStudents.length; i++) {
+          cumulativeWeight += availableStudents[i].weight;
+          if (randomNum < cumulativeWeight) {
+            return availableStudents[i];
+          }
+        }
+      }
+
+      var resultElement = document.getElementById("result");
+      resultElement.innerHTML = "";
+
+      function drawStudent() {
+        var selectedStudent = getRandomStudent();
+        if (selectedStudent) {
+          selected.push(selectedStudent.name);
+          var studentElement = document.createElement("div");
+          studentElement.classList.add("result-item");
+          studentElement.textContent = selectedStudent.name;
+          resultElement.appendChild(studentElement);
+          speech(selectedStudent.name); // 播报语音
+        }
+      }
+
+      var intervalId = setInterval(function () {
+        drawStudent();
+        if (selected.length >= numOfStudents) {
+          clearInterval(intervalId);
+        }
+      }, 800); // 每0.6秒抽取一名学生
+    }
+
+    function speech(text) {
+      var url = "https://fanyi.sogou.com/reventondc/synthesis?text=" + text + "&speed=0.7&lang=zh-CHS&from=translateweb&speaker=2";
+      new Audio(url).play();
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <h3>本次抽到的是</h3>
+    <div id="result"></div>
+    <br>
+    <input type="number" id="numOfStudents" placeholder="请输入需要抽取的人数">
+    <br>
+    <input type="button" value="抽取" id="BTN" onclick="drawLottery();" p="l" />
+    <script>
+      document.addEventListener("keydown", function (event) {
+        if (event.keyCode == 65) {
+          document.getElementById("BTN").click();
+        }
+      });
+    </script>
+  </div>
+  <div id="footer">
+    <p>© 2023 whhhhh | <script type="text/javascript" src="./js/siteVisitor.js"></script></p>
+  </div>
+</body>
+
 </html>
