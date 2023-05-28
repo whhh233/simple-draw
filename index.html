@@ -2,38 +2,75 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<style type="text/css">
-			@import url("./css/main.css");
-			@import url("./css/btn.css");
-		</style>
 		<title>抽签小助手</title>
-		<script type="text/javascript" src="./js/main.js">
-		</script>
-		<script type="text/javascript" src="./js/btn.js">
-		</script>
-		<script type="text/javascript" src="./js/siteTime.js">
-		</script>
+		<style>
+			body {
+				background-image: url("./img/hfbz.jpg");
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				background-attachment: fixed;
+			}
+
+			.container {
+				text-align: center;
+				margin-top: 200px;
+			}
+
+			h3 {
+				font-size: 24px;
+				color: white;
+			}
+
+			h1 {
+				font-size: 48px;
+				color: white;
+				margin-top: 20px;
+			}
+
+			#BTN {
+				font-size: 18px;
+				padding: 10px 20px;
+				border-radius: 5px;
+				border: none;
+				background-color: #3d9970;
+				color: white;
+				cursor: pointer;
+				margin-top: 30px;
+			}
+
+			#footer {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				background-color: rgba(0, 0, 0, 0.5);
+				padding: 10px;
+				color: white;
+				font-size: 14px;
+				text-align: center;
+			}
+		</style>
+		<script type="text/javascript" src="./js/main.js"></script>
+		<script type="text/javascript" src="./js/btn.js"></script>
+		<script type="text/javascript" src="./js/siteTime.js"></script>
 		<link rel="shortcut icon" href="./img/WebLogo.ico">
 	</head>
 
 	<body>
-		<body background="./img/hfbz.jpg"
-			style=" background-repeat:no-repeat ;background-size:100% 100%;background-attachment: fixed;">
-			<div>
-				<h3>本次抽到的是</h3>
-				<h1 id="result">^_^</h1>
-				<input type="button" value="按A开始" id="BTN" onclick="btnOnclick();" p="l" />
-				<script>
-					document.addEventListener('keydown', function(event) {
-						if (event.keyCode == 65) {
-							document.getElementById('BTN').click();
-						}
-					});
-				</script>
-			</div>
-			<div id="footer">
-				<p>© 2023 whhhhh | <script type="text/javascript" src="./js/siteVisitor.js"></script>
-				</p>
-			</div>
-		</body>
+		<div class="container">
+			<h3>本次抽到的是</h3>
+			<h1 id="result">^_^</h1>
+			<input type="button" value="按A开始" id="BTN" onclick="btnOnclick();" p="l" />
+			<script>
+				document.addEventListener('keydown', function(event) {
+					if (event.keyCode == 65) {
+						document.getElementById('BTN').click();
+					}
+				});
+			</script>
+		</div>
+		<div id="footer">
+			<p>© 2023 whhhhh | <script type="text/javascript" src="./js/siteVisitor.js"></script></p>
+		</div>
+	</body>
 </html>
